@@ -1,0 +1,43 @@
+The code implements a number guessing game where the user tries to guess a randomly generated number between 1 and 100, 
+with hints provided based on the proximity of the guess to the secret number. 
+The game continues until the user correctly guesses the number, displaying the number of attempts and the correct number.
+
+Includes and Namespace
+#include <iostream>: Includes the input/output stream library for input and output operations.
+
+#include <cstdlib>: Includes the standard library for general-purpose functions like rand() and srand().
+
+#include <ctime>: Includes the time library for generating random numbers.
+
+#include <cmath>: Includes the mathematics library for mathematical functions like abs().
+
+using namespace std;: Uses the standard namespace to avoid prefixing standard library functions with std::.
+
+Main Function
+int main() { ... }: Defines the main function where program execution begins.
+
+Random Number Generation
+srand(time(0)): Seeds the random number generator with the current time to generate a different random number each time the program runs.
+int secretNumber = rand() % 100 + 1;: Generates a random number between 1 and 100 (inclusive) and stores it in secretNumber.
+
+Variables
+int userGuess;: Stores the user's guess.
+int previousGuessValue = 0;: Stores the previous guess value (initialized to 0).
+int attemptCount = 0;: Counts the number of attempts made by the user.
+
+Game Loop
+while (true) { ... }: Runs an infinite loop until the user guesses the correct number.
+cout << "Enter your guess number: ";: Prompts the user to enter a guess.
+cin >> userGuess;: Reads the user's guess.
+
+Hint System
+if (attemptCount > 1) { ... }: Checks if this is not the first attempt.
+if (abs(secretNumber - userGuess) < abs(secretNumber - previousGuessValue)) { ... }: Checks if the current guess is closer to the secret number than the previous guess.
+else if (abs(secretNumber - userGuess) > abs(secretNumber - previousGuessValue)) { ... }: Checks if the current guess is farther away from the secret number than the previous guess.
+else { ... }: If the current guess is at the same distance as the previous guess.
+
+Win Condition
+if (userGuess == secretNumber) { ... }: Checks if the user's guess matches the secret number.
+cout << "Congratulations! You guessed the number in " << attemptCount << " tries." << endl;: Displays a congratulatory message with the number of attempts.
+cout << "The correct number was: " << secretNumber << endl;: Displays the correct number.
+break;: Exits the game loop.
